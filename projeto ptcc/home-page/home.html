@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Escola Alfredo Cardoso - Piracicaba</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #121212;
+      color: #ddd;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    header {
+      width: 100%;
+      max-width: 960px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    header h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      color: #9b59b6;
+      margin-bottom: 0.3em;
+    }
+    header p {
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: #b39ddb;
+    }
+    nav {
+      margin-bottom: 40px;
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-weight: 600;
+    }
+    nav a {
+      color: #b39ddb;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    nav a:hover {
+      background-color: #9b59b6;
+      color: #121212;
+    }
+    section.card {
+      width: 100%;
+      max-width: 960px;
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 4px 12px rgba(155, 89, 182, 0.5);
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-weight: 600;
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      border-left: 6px solid #9b59b6;
+      padding-left: 15px;
+      color: #9b59b6;
+    }
+    ul {
+      list-style: none;
+    }
+    ul li {
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      background-color: #2c2c2c;
+      font-size: 1.1rem;
+      cursor: default;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      color: #ccc;
+    }
+    ul li:hover {
+      background-color: #9b59b6;
+      color: #121212;
+    }
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #ccc;
+    }
+    .contact-info div {
+      flex: 1 1 200px;
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(155, 89, 182, 0.3);
+      user-select: none;
+    }
+    .contact-info div h4 {
+      color: #9b59b6;
+      margin-bottom: 10px;
+    }
+    footer {
+      margin-top: 20px;
+      color: #9b59b6;
+      font-weight: 500;
+      user-select: none;
+      font-size: 0.9rem;
+      text-align: center;
+      width: 100%;
+      max-width: 960px;
+      padding-bottom: 20px;
+    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      section.card {
+        padding: 25px 30px;
+      }
+      ul li {
+        font-size: 1rem;
+        padding: 12px 15px;
+      }
+      nav {
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .contact-info {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Escola Alfredo Cardoso</h1>
+    <p>Piracicaba - SP</p>
+  </header>
+
+  <!-- Menu de navegação -->
+  <nav>
+    <a href="#infos">Informações</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#contato">Contato</a>
+    <a href="https://feedback.escolaalfredo.com.br" target="_blank">Feedback</a>
+  </nav>
+
+  <!-- Informações da Escola -->
+  <section id="infos" class="card">
+    <h2 class="section-title">📌 Informações Gerais</h2>
+    <ul>
+      <li>🗓️ <strong>15/07:</strong> Retorno às aulas do 2º semestre</li>
+      <li>📄 <strong>30/07:</strong> Entrega dos Boletins</li>
+      <li>👨‍👩‍👧 <strong>01/08:</strong> Reunião com pais e mestres</li>
+    </ul>
+  </section>
+
+  <!-- Eventos -->
+  <section id="eventos" class="card">
+    <h2 class="section-title">🎉 Próximos Eventos</h2>
+    <ul>
+      <li>22/07 - Feira Cultural com exposições e apresentações</li>
+      <li>10/08 - Gincana Escolar</li>
+      <li>05/09 - Dia da Família na Escola</li>
+    </ul>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="card">
+    <h2 class="section-title">📞 Contato</h2>
+    <div class="contact-info">
+      <div>
+        <h4>Endereço</h4>
+        <p>Rua Exemplo, 123 - Centro, Piracicaba - SP</p>
+      </div>
+      <div>
+        <h4>Telefone</h4>
+        <p>(19) 99999-9999</p>
+      </div>
+      <div>
+        <h4>E-mail</h4>
+        <p>contato@alfredocardoso.sp.gov.br</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Escola Alfredo Cardoso - Todos os direitos reservados
+  </footer>
+
+</body>
+</html>
