@@ -111,6 +111,27 @@
       text-align: center;
       font-size: 0.9rem;
     }
+
+    /* NOVA SEÇÃO DE AVISOS */
+    #areaAvisos {
+      max-width: 900px;
+      margin: 20px auto 40px auto;
+      background: rgba(255, 255, 255, 0.9);
+      color: #003d7a;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      padding: 20px 30px;
+      display: none;
+    }
+    #areaAvisos h2 {
+      margin-bottom: 15px;
+      color: #f60;
+    }
+    #areaAvisos p {
+      font-size: 1rem;
+      color: #222;
+    }
+
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
@@ -137,6 +158,12 @@
       <a href="#desafios">Desafios</a>
     </nav>
   </header>
+
+  <!-- SEÇÃO DE AVISOS (exibida somente se houver aviso) -->
+  <section id="areaAvisos">
+    <h2>Aviso Importante</h2>
+    <p id="textoAviso"></p>
+  </section>
 
   <section class="hero" id="home">
     <div class="hero-text">
@@ -180,5 +207,16 @@
     &copy; 2025 Escola Alfredo Cardoso - Todos os direitos reservados
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const aviso = localStorage.getItem('avisoGeral');
+      if (aviso) {
+        const areaAvisos = document.getElementById('areaAvisos');
+        const textoAviso = document.getElementById('textoAviso');
+        areaAvisos.style.display = 'block';
+        textoAviso.textContent = aviso;
+      }
+    });
+  </script>
 </body>
 </html>

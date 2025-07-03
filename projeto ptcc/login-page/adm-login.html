@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Login do Administrador</title>
+  <title>Login ADM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -13,28 +13,33 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
     }
     .login-box {
-      background: white;
+      background-color: white;
       padding: 30px;
-      border-radius: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
       width: 100%;
       max-width: 400px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
     h2 {
       text-align: center;
-      color: #003d7a;
       margin-bottom: 20px;
+      color: #003d7a;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
     }
     input {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
-      font-size: 1rem;
-      border-radius: 8px;
       border: 1px solid #ccc;
+      border-radius: 8px;
     }
     button {
       width: 100%;
@@ -47,37 +52,42 @@
       font-size: 1rem;
       cursor: pointer;
     }
-    .error {
-      color: red;
-      text-align: center;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
   <div class="login-box">
-    <h2>Login do Administrador</h2>
-    <input type="email" id="email" placeholder="E-mail" required />
-    <input type="password" id="senha" placeholder="Senha" required />
-    <button onclick="fazerLogin()">Entrar</button>
-    <p class="error" id="erro"></p>
+    <h2>Acesso Administrativo</h2>
+    <form onsubmit="logarADM(event)">
+      <div class="form-group">
+        <label for="email">E-mail ADM</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" required />
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
   </div>
 
   <script>
-    // Aqui você define o e-mail e a senha do administrador
-    const emailADM = "guilhermemotajau123@gmail.com";
-    const senhaADM = "adm123";
+    function logarADM(e) {
+      e.preventDefault();
 
-    function fazerLogin() {
       const email = document.getElementById("email").value.trim();
-      const senha = document.getElementById("senha").value.trim();
-      const erro = document.getElementById("erro");
+      const senha = document.getElementById("senha").value;
 
-      if (email === emailADM && senha === senhaADM) {
-        localStorage.setItem("adminLogado", "true");
-        window.location.href = "adm-solicitacoes.html"; // redireciona para a página de aprovações
+      if (email === "guilhermemotajau123@gmail.com" && senha === "adm123") {
+          console.log("Login OK! Redirecionando...");
+        // Salva login e redireciona para painel administrativo
+        localStorage.setItem("usuarioLogado", JSON.stringify({
+          nome: "Administrador",
+          email,
+          tipo: "administrador"
+        }));
+        window.location.href = "adm-dashboard.html";
       } else {
-        erro.textContent = "E-mail ou senha inválidos.";
+        alert("Credenciais inválidas");
       }
     }
   </script>
