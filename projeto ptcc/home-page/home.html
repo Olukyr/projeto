@@ -2,146 +2,127 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Escola Alfredo Cardoso - Piracicaba</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Escola Alfredo Cardoso - Projetos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #121212;
-      color: #ddd;
+      background: linear-gradient(to right, #003d7a, #4a90e2);
+      color: #fff;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
     }
     header {
-      width: 100%;
-      max-width: 960px;
-      margin-bottom: 40px;
-      text-align: center;
+      background-color: #fff;
+      color: #003d7a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    header h1 {
-      font-weight: 600;
-      font-size: 2.8rem;
-      color: #9b59b6;
-      margin-bottom: 0.3em;
-    }
-    header p {
-      font-weight: 400;
-      font-size: 1.2rem;
-      color: #b39ddb;
+    header img {
+      height: 50px;
     }
     nav {
-      margin-bottom: 40px;
-      width: 100%;
-      max-width: 960px;
       display: flex;
-      justify-content: center;
-      gap: 30px;
+      gap: 25px;
       font-weight: 600;
+      flex-wrap: wrap;
     }
     nav a {
-      color: #b39ddb;
+      color: #003d7a;
       text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-      user-select: none;
+      transition: 0.3s;
     }
     nav a:hover {
-      background-color: #9b59b6;
-      color: #121212;
+      color: #f60;
     }
-    section.card {
-      width: 100%;
-      max-width: 960px;
-      background-color: #1e1e1e;
-      border-radius: 12px;
-      padding: 30px 40px;
-      box-shadow: 0 4px 12px rgba(155, 89, 182, 0.5);
-      margin-bottom: 40px;
-    }
-    .section-title {
-      font-weight: 600;
-      font-size: 1.6rem;
-      margin-bottom: 25px;
-      border-left: 6px solid #9b59b6;
-      padding-left: 15px;
-      color: #9b59b6;
-    }
-    ul {
-      list-style: none;
-    }
-    ul li {
-      padding: 15px 20px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      background-color: #2c2c2c;
-      font-size: 1.1rem;
-      cursor: default;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      color: #ccc;
-    }
-    ul li:hover {
-      background-color: #9b59b6;
-      color: #121212;
-    }
-    .contact-info {
+    /* Removido o .cta pois não tem mais botão de inscrever-se */
+    .hero {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      color: #ccc;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 30px;
     }
-    .contact-info div {
-      flex: 1 1 200px;
-      background-color: #2c2c2c;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(155, 89, 182, 0.3);
-      user-select: none;
+    .hero-text {
+      flex: 1 1 400px;
+      max-width: 600px;
     }
-    .contact-info div h4 {
-      color: #9b59b6;
-      margin-bottom: 10px;
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .hero-text a {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .hero-text a:hover {
+      background-color: darkred;
+    }
+    .hero-img {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+    .hero-img img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    section {
+      padding: 60px 30px;
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    }
+    section h2 {
+      margin-bottom: 20px;
+      color: #f60;
+      font-size: 2rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #ddd;
     }
     footer {
-      margin-top: 20px;
-      color: #9b59b6;
-      font-weight: 500;
-      user-select: none;
-      font-size: 0.9rem;
+      background-color: #002d5c;
+      color: #ccc;
+      padding: 20px;
       text-align: center;
-      width: 100%;
-      max-width: 960px;
-      padding-bottom: 20px;
+      font-size: 0.9rem;
     }
-    /* Responsividade */
     @media (max-width: 768px) {
-      header h1 {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-text h1 {
         font-size: 2.2rem;
       }
-      section.card {
-        padding: 25px 30px;
-      }
-      ul li {
-        font-size: 1rem;
-        padding: 12px 15px;
-      }
       nav {
+        justify-content: center;
         gap: 15px;
-        flex-wrap: wrap;
-      }
-      .contact-info {
-        flex-direction: column;
       }
     }
   </style>
@@ -149,55 +130,64 @@
 <body>
 
   <header>
-    <h1>Escola Alfredo Cardoso</h1>
-    <p>Piracicaba - SP</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Logo_escola.png" alt="Logo Escola" />
+    <nav>
+      <a href="#portal">Portal do Aluno</a>
+      <a href="#educador">Educador</a>
+      <a href="#contato">Contato</a>
+      <a href="#metodologia">Metodologia</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#desafios">Desafios</a>
+      <!-- Link inscreva-se removido -->
+    </nav>
   </header>
 
-  <!-- Menu de navegação -->
-  <nav>
-    <a href="#infos">Informações</a>
-    <a href="#eventos">Eventos</a>
-    <a href="#contato">Contato</a>
-    <a href="https://feedback.escolaalfredo.com.br" target="_blank">Feedback</a>
-  </nav>
-
-  <!-- Informações da Escola -->
-  <section id="infos" class="card">
-    <h2 class="section-title">📌 Informações Gerais</h2>
-    <ul>
-      <li>🗓️ <strong>15/07:</strong> Retorno às aulas do 2º semestre</li>
-      <li>📄 <strong>30/07:</strong> Entrega dos Boletins</li>
-      <li>👨‍👩‍👧 <strong>01/08:</strong> Reunião com pais e mestres</li>
-    </ul>
-  </section>
-
-  <!-- Eventos -->
-  <section id="eventos" class="card">
-    <h2 class="section-title">🎉 Próximos Eventos</h2>
-    <ul>
-      <li>22/07 - Feira Cultural com exposições e apresentações</li>
-      <li>10/08 - Gincana Escolar</li>
-      <li>05/09 - Dia da Família na Escola</li>
-    </ul>
-  </section>
-
-  <!-- Contato -->
-  <section id="contato" class="card">
-    <h2 class="section-title">📞 Contato</h2>
-    <div class="contact-info">
-      <div>
-        <h4>Endereço</h4>
-        <p>Rua Exemplo, 123 - Centro, Piracicaba - SP</p>
-      </div>
-      <div>
-        <h4>Telefone</h4>
-        <p>(19) 99999-9999</p>
-      </div>
-      <div>
-        <h4>E-mail</h4>
-        <p>contato@alfredocardoso.sp.gov.br</p>
-      </div>
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Mostra de Projetos Integradores</h1>
+      <p>O protagonismo do aluno no seu processo de aprendizagem.</p>
+      <a href="#projetos">CLIQUE AQUI E CONFIRA TODOS OS TRABALHOS</a>
     </div>
+    <div class="hero-img">
+      <img src="alfredo.jpeg" alt="Alfredo Cardoso" />
+    </div>
+  </section>
+
+  <section id="portal">
+    <h2>Portal do Aluno</h2>
+    <p>Área dedicada para que os alunos acessem conteúdos exclusivos, notas, e materiais de estudo.</p>
+  </section>
+
+  <section id="educador">
+    <h2>Educador</h2>
+    <p>Recursos e ferramentas para os professores acompanharem o desenvolvimento dos alunos.</p>
+  </section>
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Telefone: (XX) XXXX-XXXX</p>
+    <p>Email: contato@escolaalfredo.com.br</p>
+    <p>Endereço: Rua Exemplo, 123 - Cidade</p>
+  </section>
+
+  <section id="metodologia">
+    <h2>Metodologia</h2>
+    <p>Valorizamos o aprendizado ativo e o desenvolvimento de projetos que envolvam diversas disciplinas.</p>
+  </section>
+
+  <section id="cursos">
+    <h2>Cursos</h2>
+    <p>Oferecemos uma variedade de cursos técnicos e acadêmicos para preparar nossos alunos para o futuro.</p>
+  </section>
+
+  <section id="desafios">
+    <h2>Desafios</h2>
+    <p>Projetos e atividades que estimulam o pensamento crítico e a criatividade dos estudantes.</p>
+  </section>
+
+  <section id="projetos">
+    <h2>Projetos Integradores</h2>
+    <p>Confira aqui todos os trabalhos dos alunos, desenvolvidos com dedicação e criatividade.</p>
   </section>
 
   <footer>
