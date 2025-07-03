@@ -6,12 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #003d7a, #4a90e2);
@@ -21,7 +15,6 @@
       justify-content: center;
       color: #003d7a;
     }
-
     .login-container {
       background-color: white;
       padding: 40px 30px;
@@ -31,35 +24,25 @@
       max-width: 400px;
       text-align: center;
     }
-
-    .logo {
-      width: 80px;
-      margin-bottom: 20px;
-    }
-
     h4 {
       font-size: 1.5rem;
       margin-bottom: 5px;
       color: #003d7a;
     }
-
     p {
       font-size: 0.95rem;
       color: #666;
       margin-bottom: 25px;
     }
-
     .form-group {
       text-align: left;
       margin-bottom: 20px;
     }
-
     label {
       font-weight: 600;
       display: block;
       margin-bottom: 6px;
     }
-
     input {
       width: 100%;
       padding: 10px;
@@ -67,7 +50,6 @@
       border-radius: 8px;
       font-size: 0.95rem;
     }
-
     button {
       width: 100%;
       padding: 12px;
@@ -80,58 +62,70 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
     button:hover {
       background-color: #d54b00;
     }
-
-    .links a {
-      display: inline-block;
-      margin: 10px 8px 0;
+    .link-cadastro {
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+    .link-cadastro a {
+      color: #003d7a;
       text-decoration: none;
       font-weight: 600;
-      color: #003d7a;
-      transition: color 0.2s ease;
     }
-
-    .links a:hover {
+    .link-cadastro a:hover {
       color: #f60;
-    }
-
-    @media (max-width: 500px) {
-      .login-container {
-        padding: 30px 20px;
-      }
     }
   </style>
 </head>
 <body>
   <div class="login-container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/School_icon.svg/1024px-School_icon.svg.png" alt="Logo da Escola" class="logo">
     <h4>Portal da Escola</h4>
     <p>Acesso institucional</p>
-    <form onsubmit="redirectToHome(event)">
-  <div class="form-group">
-    <label for="email">E-mail institucional</label>
-    <input type="email" name="email" required>
-  </div>
-  <div class="form-group">
-    <label for="senha">Senha</label>
-    <input type="password" name="senha" required>
-  </div>
-  <button type="submit">Entrar</button>
-</form>
-    <div class="links">
-      <a href="/login/responsavel">Sou responsável</a>
-      <a href="/login/professor">Sou professor</a>
+
+    <form onsubmit="fazerLogin(event)">
+      <div class="form-group">
+        <label for="email">E-mail institucional</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" required />
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div class="link-cadastro">
+      Ainda não tem uma conta? <a href="cadastro.html">Solicite acesso aqui</a>.
     </div>
   </div>
-  <script>
-  function redirectToHome(event) {
-    event.preventDefault(); // Impede o envio real do formulário
-    window.location.href = "../home-page/home.html"; // Caminho para sua homepage
-  }
-</script>
 
+  <script>
+    function fazerLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+
+      const solicitacoes = JSON.parse(localStorage.getItem('solicitacoes')) || [];
+
+      const usuario = solicitacoes.find(
+        s => s.email === email && s.senha === senha && s.status === 'aprovado'
+      );
+
+      if (usuario) {
+        alert(`Bem-vindo, ${usuario.nome}!`);
+        localStorage.setItem('usuarioLogado', JSON.stringify({
+          nome: usuario.nome,
+          email: usuario.email,
+          tipo: usuario.tipo
+        }));
+       window.location.href = '../home-page/home.html';
+      } else {
+        alert('E-mail ou senha incorretos, ou conta não aprovada.');
+      }
+    }
+  </script>
 </body>
 </html>
