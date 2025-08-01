@@ -12,10 +12,11 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #003d7a, #4a90e2);
-      color: #fff;
+      background: linear-gradient(to right, #e6f0ff, #cce0ff);
+      color: #003d7a;
       min-height: 100vh;
     }
+
     header {
       background-color: #fff;
       color: #003d7a;
@@ -29,7 +30,8 @@
       z-index: 1000;
     }
     header img {
-      height: 50px;
+      height: 60px;
+      object-fit: contain;
     }
     nav {
       display: flex;
@@ -45,6 +47,7 @@
     nav a:hover {
       color: #f60;
     }
+
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -86,13 +89,14 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
+
     section {
       padding: 60px 30px;
       max-width: 900px;
       margin: 0 auto 60px auto;
-      background: rgba(0,0,0,0.2);
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
     section h2 {
       margin-bottom: 20px;
@@ -102,17 +106,20 @@
     section p {
       font-size: 1.1rem;
       line-height: 1.5;
-      color: #ddd;
+      color: #222;
     }
+
     footer {
       background-color: #002d5c;
       color: #ccc;
       padding: 20px;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
+      border-radius: 20px 20px 0 0;
+      margin: 40px 20px 0 20px;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
     }
 
-    /* NOVA SEÇÃO DE AVISOS */
     #areaAvisos {
       max-width: 900px;
       margin: 20px auto 40px auto;
@@ -150,7 +157,8 @@
 <body>
 
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Logo_escola.png" alt="Logo Escola" />
+   
+    <img src="img/img.png" ></div>
     <nav>
       <a href="#contato">Contato</a>
       <a href="#metodologia">Metodologia</a>
@@ -159,7 +167,6 @@
     </nav>
   </header>
 
-  <!-- SEÇÃO DE AVISOS (exibida somente se houver aviso) -->
   <section id="areaAvisos">
     <h2>Aviso Importante</h2>
     <p id="textoAviso"></p>
@@ -204,7 +211,7 @@
   </section>
 
   <footer>
-    &copy; 2025 Escola Alfredo Cardoso - Todos os direitos reservados
+    &copy; 2025 Escola Alfredo Cardoso 
   </footer>
 
   <script>
