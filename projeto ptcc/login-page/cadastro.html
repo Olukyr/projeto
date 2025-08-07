@@ -136,6 +136,11 @@
       <button type="submit">Enviar solicitação</button>
       <div class="feedback" id="feedbackMsg"></div>
     </form>
+
+    <!-- Botão para criar o aluno Rai -->
+    <button type="button" onclick="adicionarUsuarioTeste()" style="margin-top: 15px; font-size: 0.8rem;">
+      [Criar aluno Rai para teste]
+    </button>
   </div>
 
   <script>
@@ -183,6 +188,32 @@
 
       form.reset();
     });
+
+    function adicionarUsuarioTeste() {
+      const lista = JSON.parse(localStorage.getItem("solicitacoes")) || [];
+
+      const usuarioExiste = lista.some(s => s.email === "rai@email.com");
+
+      if (usuarioExiste) {
+        alert("O usuário 'Rai' já foi cadastrado.");
+        return;
+      }
+
+      const novoAluno = {
+        nome: "Rai",
+        email: "rai@email.com",
+        tipo: "aluno",
+        senha: "1234567",
+        justificativa: "Usuário de teste automático.",
+        status: "aprovado",
+        data: new Date().toLocaleString()
+      };
+
+      lista.push(novoAluno);
+      localStorage.setItem("solicitacoes", JSON.stringify(lista));
+
+      alert("Usuário 'Rai' cadastrado com sucesso!");
+    }
   </script>
 
 </body>
