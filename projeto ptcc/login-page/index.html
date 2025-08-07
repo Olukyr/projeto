@@ -1,46 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Login Institucional - Escola</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="es" type="image/png" />
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../login-page/escola.png" type="image/png" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-image: url('../login-page/lapis.JPG');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       min-height: 100vh;
+      display: flex;
+      flex-direction: row;
+      background-color: #f5f5f5;
+    }
+
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(to bottom right, #e0cf13, #a79903);
+      color: white;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-panel h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .left-panel h1 span {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .left-panel ul {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+
+    .left-panel ul li {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .right-panel {
+      flex: 1;
+      background-color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #003d7a;
+      padding: 60px 40px;
     }
 
     .login-container {
-      background-color: white;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
       width: 100%;
       max-width: 400px;
       text-align: center;
     }
 
     .login-container img.logo {
-      width: 100px;
+      width: 80px;
       margin-bottom: 20px;
     }
 
     h4 {
       font-size: 1.5rem;
+      color: #ede91a;
       margin-bottom: 5px;
-      color: #003d7a;
     }
 
     p {
@@ -58,6 +92,7 @@
       font-weight: 600;
       display: block;
       margin-bottom: 6px;
+      color: #333;
     }
 
     input {
@@ -71,7 +106,7 @@
     button {
       width: 100%;
       padding: 12px;
-      background-color: #f60;
+      background-color:  #ede91a;
       color: white;
       border: none;
       border-radius: 8px;
@@ -82,7 +117,7 @@
     }
 
     button:hover {
-      background-color: #d54b00;
+      background-color:   #f8f685;
     }
 
     .link-cadastro {
@@ -91,40 +126,78 @@
     }
 
     .link-cadastro a {
-      color: #003d7a;
+      color:  #ede91a;
       text-decoration: none;
       font-weight: 600;
     }
 
     .link-cadastro a:hover {
-      color: #f60;
+      color:  #ede91a;
     }
+
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+
+      .left-panel, .right-panel {
+        flex: none;
+        width: 100%;
+        padding: 30px 20px;
+      }
+
+      .left-panel {
+        order: 5;
+      }
+
+      .right-panel {
+        order: 1;
+      }
+    }
+    .left-panel {
+  flex: 1;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.imagem-painel {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
   </style>
 </head>
 <body>
-  <div class="login-container">
+  <div class="left-panel">
+    <img src="../home-page/../login-page/image.png" alt="Alfredo Cardoso"class="imagem-painel">
+  </div>
   
-    <img src="../login-page/escola.png" alt="Logo da Escola" class="logo">
+  <div class="right-panel">
+    <div class="login-container">
+      <img src="../login-page/escola.png" alt="Logo da Escola" class="logo" />
+      <h4>Portal da Escola</h4>
+      <p>Acesso institucional</p>
 
-    <h4>Portal da Escola</h4>
-    <p>Acesso institucional</p>
+      <form onsubmit="fazerLogin(event)">
+        <div class="form-group">
+          <label for="email">E-mail institucional</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" required />
+        </div>
+        <button type="submit">Entrar</button>
+      </form>
 
-    <form onsubmit="fazerLogin(event)">
-      <div class="form-group">
-        <label for="email">E-mail institucional</label>
-        <input type="email" id="email" required />
+      <div class="link-cadastro">
+        Ainda não tem uma conta? <a href="cadastro.html">Solicite acesso aqui</a>.<br />
+        É administrador? <a href="adm-login.html">Acesse como administrador</a>.
       </div>
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" required />
-      </div>
-      <button type="submit">Entrar</button>
-    </form>
-
-    <div class="link-cadastro">
-      Ainda não tem uma conta? <a href="cadastro.html">Solicite acesso aqui</a>.
-      <br>
-      É administrador? <a href="adm-login.html">Acesse como administrador</a>.
     </div>
   </div>
 
