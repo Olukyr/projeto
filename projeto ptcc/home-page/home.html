@@ -7,12 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="../home-page/escola.png" type="image/png">
 
-  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #e6f0ff, #cce0ff);
@@ -32,23 +29,33 @@
       top: 0;
       z-index: 1000;
     }
-    header img {
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
       height: 60px;
       object-fit: contain;
     }
+
     nav {
       display: flex;
       gap: 25px;
       font-weight: 600;
       flex-wrap: wrap;
     }
+
     nav a {
       color: #003d7a;
       text-decoration: none;
       transition: 0.3s;
     }
+
     nav a:hover {
-      color: #f60;
+      color: #ede91a;
     }
 
     .hero {
@@ -58,34 +65,42 @@
       justify-content: space-between;
       padding: 60px 30px;
     }
+
     .hero-text {
       flex: 1 1 400px;
       max-width: 600px;
     }
+
     .hero-text h1 {
       font-size: 3rem;
       margin-bottom: 20px;
     }
+
     .hero-text p {
       font-size: 1.2rem;
       margin-bottom: 30px;
     }
+
     .hero-text a {
-      background-color: red;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
+      background-color: #ede91a;
+      color: #003d7a;
+      padding: 12px 24px;
+      border-radius: 8px;
       font-weight: bold;
       text-decoration: none;
-      transition: 0.3s;
+      transition: 0.3s ease;
+      display: inline-block;
     }
+
     .hero-text a:hover {
-      background-color: darkred;
+      background-color: #dcd714;
     }
+
     .hero-img {
       flex: 1 1 300px;
       text-align: center;
     }
+
     .hero-img img {
       max-width: 100%;
       height: auto;
@@ -101,11 +116,13 @@
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
+
     section h2 {
       margin-bottom: 20px;
-      color: #f60;
+      color: #003d7a;
       font-size: 2rem;
     }
+
     section p {
       font-size: 1.1rem;
       line-height: 1.5;
@@ -133,10 +150,12 @@
       padding: 20px 30px;
       display: none;
     }
+
     #areaAvisos h2 {
       margin-bottom: 15px;
-      color: #f60;
+      color: #ede91a;
     }
+
     #areaAvisos p {
       font-size: 1rem;
       color: #222;
@@ -147,9 +166,11 @@
         flex-direction: column;
         text-align: center;
       }
+
       .hero-text h1 {
         font-size: 2.2rem;
       }
+
       nav {
         justify-content: center;
         gap: 15px;
@@ -160,8 +181,9 @@
 <body>
 
   <header>
-   
-    <img src="img/../escola.png" ></div>
+    <div class="logo">
+      <img src="../home-page/escola.png" alt="Logo da Escola Alfredo Cardoso">
+    </div>
     <nav>
       <a href="#contato">Contato</a>
       <a href="#metodologia">Metodologia</a>

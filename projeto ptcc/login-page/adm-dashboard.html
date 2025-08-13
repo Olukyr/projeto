@@ -6,67 +6,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Inter', sans-serif;
-      margin: 0;
       background-color: #f5f5f5;
+      color: #333;
     }
+
+    /* Header com logo à esquerda e título centralizado */
     header {
-      background-color: #003d7a;
-      color: white;
-      padding: 20px;
+      background-color: #ede91a;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* mantém o título centralizado */
+      min-height: 56px;
+    }
+    .header-logo {
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .header-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #333;
       text-align: center;
     }
+
     nav {
       display: flex;
       justify-content: center;
       gap: 30px;
-      background-color: #004f99;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
       padding: 15px 0;
     }
     nav a {
-      color: white;
-      font-weight: bold;
+      color: #333;
+      font-weight: 600;
       text-decoration: none;
       cursor: pointer;
+      transition: color 0.3s ease;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
+    nav a:hover { color: #ede91a; }
+
     section {
       display: none;
       padding: 30px;
       max-width: 900px;
-      margin: 0 auto 40px auto;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.08);
     }
-    section.active {
-      display: block;
+    section.active { display: block; }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: #333;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 15px;
     }
     th, td {
       padding: 10px;
       border: 1px solid #ccc;
       text-align: left;
+      font-size: 0.95rem;
+      vertical-align: top;
+      word-break: break-word;
     }
+
     .btn {
-      padding: 6px 12px;
+      padding: 8px 14px;
       font-weight: bold;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
-      margin-right: 5px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
     }
-    .btn.aprovar { background-color: #28a745; color: white; }
-    .btn.reprovar { background-color: #dc3545; color: white; }
-    .btn.banir { background-color: #d9534f; color: white; }
-    .btn.alterar { background-color: #007bff; color: white; }
-    .btn.excluir-aviso { background-color: #a83232; color: white; margin-left: 10px; }
+    .btn.aprovar { background-color: #28a745; color: #fff; }
+    .btn.aprovar:hover { background-color: #218838; }
+
+    .btn.reprovar { background-color: #dc3545; color: #fff; }
+    .btn.reprovar:hover { background-color: #c82333; }
+
+    .btn.banir { background-color: #d9534f; color: #fff; }
+    .btn.banir:hover { background-color: #c9302c; }
+
+    .btn.alterar { background-color: #ede91a; color: #333; }
+    .btn.alterar:hover { background-color: #f8f685; }
+
+    .btn.excluir-aviso { background-color: #dc3545; color: #fff; }
+    .btn.excluir-aviso:hover { background-color: #c82333; }
+
     textarea {
       width: 100%;
       height: 100px;
@@ -77,6 +131,7 @@
       border-radius: 8px;
       border: 1px solid #ccc;
     }
+
     .aviso-container {
       display: flex;
       align-items: center;
@@ -85,17 +140,30 @@
     }
     .aviso-texto {
       flex: 1;
-      background: #ffeeba;
-      padding: 10px;
+      background: #fff8c4;
+      padding: 12px;
       border-radius: 8px;
-      color: #856404;
+      color: #6a5d00;
       font-weight: 600;
+      border: 1px solid #ede91a;
+    }
+
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 15px; }
+      section { margin: 15px; padding: 20px; }
+      .header-logo img { height: 34px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Painel Administrativo</h1>
+    <div class="header-inner">
+      <div class="header-logo">
+        <!-- ajuste o caminho se necessário -->
+        <img src="../home-page/escola.png" alt="Logo da Escola">
+      </div>
+      <div class="header-title">Painel Administrativo</div>
+    </div>
   </header>
 
   <nav>
@@ -127,7 +195,13 @@
   </section>
 
   <script>
-    // Troca abas
+    // Escapa HTML para evitar injeção quando renderiza dados vindos do localStorage
+    function esc(str) {
+      return String(str).replace(/[&<>"']/g, (m) => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+      }[m]));
+    }
+
     function trocarAba(abaId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(abaId).classList.add('active');
@@ -136,7 +210,6 @@
       if (abaId === 'avisos') carregarAvisoAtual();
     }
 
-    // CARREGAR SOLICITAÇÕES PENDENTES
     function carregarSolicitacoes() {
       const container = document.getElementById('listaSolicitacoes');
       const lista = JSON.parse(localStorage.getItem('solicitacoes')) || [];
@@ -147,45 +220,54 @@
         return;
       }
 
-      container.innerHTML = '<table><tr><th>Nome</th><th>Email</th><th>Tipo</th><th>Ações</th></tr>' +
-        pendentes.map((s, i) => `
-          <tr>
-            <td>${s.nome}</td>
-            <td>${s.email}</td>
-            <td>${s.tipo}</td>
-            <td>
-              <button class="btn aprovar" onclick="aprovar(${i})">Aprovar</button>
-              <button class="btn reprovar" onclick="reprovar(${i})">Reprovar</button>
-            </td>
-          </tr>`).join('') + '</table>';
+      const linhas = pendentes.map((s, i) => `
+        <tr>
+          <td>${esc(s.nome)}</td>
+          <td>${esc(s.email)}</td>
+          <td>${esc(s.tipo)}</td>
+          <td>
+            <button class="btn aprovar" onclick="aprovar(${i})">Aprovar</button>
+            <button class="btn reprovar" onclick="reprovar(${i})">Reprovar</button>
+          </td>
+        </tr>`).join('');
+
+      container.innerHTML = `
+        <table>
+          <tr><th>Nome</th><th>Email</th><th>Tipo</th><th>Ações</th></tr>
+          ${linhas}
+        </table>`;
     }
 
-    // APROVAR
     function aprovar(index) {
       const lista = JSON.parse(localStorage.getItem('solicitacoes')) || [];
       const pendentes = lista.filter(s => s.status === 'pendente');
       const item = pendentes[index];
+      if (!item) return;
+
       const realIndex = lista.findIndex(s => s.email === item.email);
       const senha = prompt('Defina uma senha para essa conta:');
       if (!senha) return alert('Senha é obrigatória para aprovar.');
+
       lista[realIndex].status = 'aprovado';
       lista[realIndex].senha = senha;
       localStorage.setItem('solicitacoes', JSON.stringify(lista));
       carregarSolicitacoes();
     }
 
-    // REPROVAR
     function reprovar(index) {
       const lista = JSON.parse(localStorage.getItem('solicitacoes')) || [];
       const pendentes = lista.filter(s => s.status === 'pendente');
       const item = pendentes[index];
+      if (!item) return;
+
       const realIndex = lista.findIndex(s => s.email === item.email);
-      lista.splice(realIndex, 1);
-      localStorage.setItem('solicitacoes', JSON.stringify(lista));
+      if (realIndex >= 0) {
+        lista.splice(realIndex, 1);
+        localStorage.setItem('solicitacoes', JSON.stringify(lista));
+      }
       carregarSolicitacoes();
     }
 
-    // ENVIAR AVISO
     function enviarAviso() {
       const aviso = document.getElementById('textoAviso').value.trim();
       if (!aviso) return alert('Digite um aviso antes de enviar.');
@@ -195,7 +277,6 @@
       carregarAvisoAtual();
     }
 
-    // CARREGAR AVISO ATUAL
     function carregarAvisoAtual() {
       const aviso = localStorage.getItem('avisoGeral');
       const avisoContainer = document.getElementById('avisoAtual');
@@ -209,7 +290,6 @@
       }
     }
 
-    // EXCLUIR AVISO
     function excluirAviso() {
       if (confirm('Deseja realmente excluir o aviso atual?')) {
         localStorage.removeItem('avisoGeral');
@@ -218,7 +298,6 @@
       }
     }
 
-    // CARREGAR CONTAS APROVADAS
     function carregarAprovados() {
       const container = document.getElementById('listaAprovados');
       const lista = JSON.parse(localStorage.getItem('solicitacoes')) || [];
@@ -229,24 +308,30 @@
         return;
       }
 
-      container.innerHTML = '<table><tr><th>Nome</th><th>Email</th><th>Tipo</th><th>Ações</th></tr>' +
-        aprovados.map((s, i) => `
-          <tr>
-            <td>${s.nome}</td>
-            <td>${s.email}</td>
-            <td>${s.tipo}</td>
-            <td>
-              <button class="btn alterar" onclick="alterarTipo(${i})">Alterar Tipo</button>
-              <button class="btn banir" onclick="banir(${i})">Banir</button>
-            </td>
-          </tr>`).join('') + '</table>';
+      const linhas = aprovados.map((s, i) => `
+        <tr>
+          <td>${esc(s.nome)}</td>
+          <td>${esc(s.email)}</td>
+          <td>${esc(s.tipo)}</td>
+          <td>
+            <button class="btn alterar" onclick="alterarTipo(${i})">Alterar Tipo</button>
+            <button class="btn banir" onclick="banir(${i})">Banir</button>
+          </td>
+        </tr>`).join('');
+
+      container.innerHTML = `
+        <table>
+          <tr><th>Nome</th><th>Email</th><th>Tipo</th><th>Ações</th></tr>
+          ${linhas}
+        </table>`;
     }
 
-    // ALTERAR TIPO DE ACESSO
     function alterarTipo(index) {
       const lista = JSON.parse(localStorage.getItem('solicitacoes')) || [];
       const aprovados = lista.filter(s => s.status === 'aprovado');
       const item = aprovados[index];
+      if (!item) return;
+
       const realIndex = lista.findIndex(s => s.email === item.email);
       const novoTipo = prompt('Digite o novo tipo de acesso (administrador ou responsavel):', lista[realIndex].tipo);
       if (!novoTipo || (novoTipo !== 'administrador' && novoTipo !== 'responsavel')) {
@@ -258,20 +343,21 @@
       carregarAprovados();
     }
 
-    // BANIR USUÁRIO
     function banir(index) {
       const lista = JSON.parse(localStorage.getItem('solicitacoes')) || [];
       const aprovados = lista.filter(s => s.status === 'aprovado');
       const item = aprovados[index];
+      if (!item) return;
+
       const realIndex = lista.findIndex(s => s.email === item.email);
-      if (confirm('Tem certeza que deseja banir este usuário?')) {
+      if (realIndex >= 0 && confirm('Tem certeza que deseja banir este usuário?')) {
         lista.splice(realIndex, 1);
         localStorage.setItem('solicitacoes', JSON.stringify(lista));
         carregarAprovados();
       }
     }
 
-    // Inicializa com a aba "solicitacoes"
+    // Inicia mostrando solicitações pendentes
     carregarSolicitacoes();
   </script>
 </body>
