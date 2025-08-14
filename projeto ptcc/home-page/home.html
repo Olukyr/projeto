@@ -1,258 +1,264 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Escola Alfredo Cardoso - Projetos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="../home-page/escola.png" type="image/png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Escola Alfredo Cardoso - Painel</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ===== ESTILOS ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #fffdf0, #fffce6);
+  color: #003d7a;
+  min-height: 100vh;
+  display: flex;
+}
+.sidebar {
+  width: 260px;
+  background: #fff;
+  border-right: 3px solid #ede91a;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+}
+.sidebar img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.sidebar h2 {
+  color: #003d7a;
+  margin-bottom: 30px;
+  font-size: 1.4rem;
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.sidebar nav a {
+  display: block;
+  padding: 12px;
+  text-align: center;
+  background: #ede91a;
+  color: #003d7a;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.sidebar nav a:hover { background: #dcd714; }
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #fff, #fefce6);
-      color: #003d7a;
-      min-height: 100vh;
-      display: flex;
-    }
+header {
+  background-color: #fff;
+  color: #003d7a;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #ede91a;
+}
+header .menu-toggle {
+  font-size: 1.8rem;
+  cursor: pointer;
+  background: #ede91a;
+  border-radius: 6px;
+  padding: 6px 10px;
+  transition: background 0.3s ease;
+}
+header .menu-toggle:hover { background: #dcd714; }
 
-    /* ==== MENU LATERAL ==== */
-    .sidebar {
-      width: 220px;
-      background: #fff;
-      border-right: 3px solid #ede91a;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.05);
-    }
+.main-content {
+  margin-left: 260px;
+  flex: 1;
+  padding: 30px;
+}
+section {
+  display: none;
+  padding: 30px;
+  margin-bottom: 30px;
+  background: #fff;
+  border-radius: 10px;
+  border: 2px solid #ede91a;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+section.active { display: block; }
+section h2 {
+  margin-bottom: 20px;
+  color: #003d7a;
+  font-size: 1.8rem;
+}
+section p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #222;
+}
+footer {
+  background-color: #003d7a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+.calendar {
+  border: 1px solid #ede91a;
+  border-radius: 8px;
+  padding: 15px;
+  background: #fffdf0;
+}
+.calendar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.calendar th, .calendar td {
+  border: 1px solid #ede91a;
+  text-align: center;
+  padding: 8px;
+}
+.calendar th { background: #ede91a; color: #003d7a; }
+.event { margin-top: 10px; font-size: 1rem; }
 
-    .sidebar h3 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #003d7a;
-    }
-
-    .sidebar button {
-      background: transparent;
-      border: none;
-      color: #003d7a;
-      text-align: left;
-      font-size: 1rem;
-      padding: 10px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s ease;
-    }
-
-    .sidebar button:hover {
-      background: #ede91a;
-      color: #003d7a;
-    }
-
-    .sidebar button.active {
-      background: #ede91a;
-      color: #003d7a;
-    }
-
-    /* ==== CONTEÚDO PRINCIPAL ==== */
-    .main-content {
-      margin-left: 240px;
-      flex: 1;
-      padding: 30px;
-      animation: fadeIn 0.5s ease;
-    }
-
-    section {
-      padding: 40px;
-      max-width: 900px;
-      margin: 0 auto 40px auto;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    section.active {
-      display: block;
-      opacity: 1;
-    }
-
-    section h2 {
-      margin-bottom: 15px;
-      color: #003d7a;
-      font-size: 2rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 0.8rem;
-      color: #333;
-    }
-
-    /* Cartão do projeto */
-    .projeto-card {
-      margin-top: 20px;
-      background: #fff;
-      border: 2px solid #ede91a;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-
-    .projeto-card h3 {
-      color: #003d7a;
-      margin-bottom: 10px;
-    }
-
-    .projeto-card p {
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    .btn-projeto {
-      display: inline-block;
-      background: #ede91a;
-      color: #003d7a;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .btn-projeto:hover {
-      background: #dcd714;
-    }
-
-    /* Animação */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Responsivo */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        justify-content: space-around;
-        position: fixed;
-        bottom: 0;
-        top: auto;
-        border-right: none;
-        border-top: 3px solid #ede91a;
-        box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
-      }
-
-      .main-content {
-        margin-left: 0;
-        margin-bottom: 70px; /* espaço para menu fixo */
-      }
-
-      .sidebar h3 { display: none; }
-    }
-  </style>
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    height: auto;
+    border-right: none;
+    border-bottom: 3px solid #ede91a;
+  }
+  .sidebar h2, .sidebar img { display: none; }
+  .main-content { margin-left: 0; }
+}
+</style>
 </head>
 <body>
 
-  <!-- MENU LATERAL -->
-  <div class="sidebar">
-    <h3>MENU</h3>
-    <button onclick="mostrarSecao('avisos')" id="btn-avisos">Avisos</button>
-    <button onclick="mostrarSecao('contato')" id="btn-contato">Contato</button>
-    <button onclick="mostrarSecao('metodologia')" id="btn-metodologia">Metodologia</button>
-    <button onclick="mostrarSecao('cursos')" id="btn-cursos">Cursos</button>
-    <button onclick="mostrarSecao('desafios')" id="btn-desafios">Desafios</button>
-    <button onclick="mostrarSecao('projetos')" id="btn-projetos">Projetos</button>
-  </div>
+<aside class="sidebar">
+  <img src="../home-page/escola.png" alt="Logo da Escola Alfredo Cardoso" id="logoEscola">
+  <h2>Menu</h2>
+  <nav>
+    <a data-section="contato">Contato</a>
+    <a data-section="metodologia">Metodologia</a>
+    <a data-section="cursos">Cursos</a>
+    <a data-section="desafios">Desafios</a>
+    <a href="https://flyaway999.github.io/TCC-FEEDBACK/login-page/index.html" target="_blank">Feedback</a>
+  </nav>
+</aside>
 
-  <!-- CONTEÚDO -->
-  <div class="main-content">
-    <section id="avisos">
-      <h2>Aviso Importante</h2>
-      <p id="textoAviso">Sem avisos no momento.</p>
-    </section>
+<div class="main-content">
+  <header>
+    <span class="menu-toggle">☰</span>
+    <h1>Painel Escolar</h1>
+  </header>
 
-    <section id="contato">
-      <h2>Contato</h2>
-      <p>Telefone: (XX) XXXX-XXXX</p>
-      <p>Email: contato@escolaalfredo.com.br</p>
-      <p>Endereço: Rua Exemplo, 123 - Cidade</p>
-    </section>
+  <section id="contato" class="active">
+    <h2>Contato</h2>
+    <p>Telefone: (XX) XXXX-XXXX</p>
+    <p>Email: contato@escolaalfredo.com.br</p>
+    <p>Endereço: Rua Exemplo, 123 - Cidade</p>
+  </section>
 
-    <section id="metodologia">
-      <h2>Metodologia</h2>
-      <p>Valorizamos o aprendizado ativo e o desenvolvimento de projetos que envolvam diversas disciplinas.</p>
-    </section>
+  <section id="metodologia">
+    <h2>Metodologia</h2>
+    <p>Valorizamos o aprendizado ativo e o desenvolvimento de projetos que envolvam diversas disciplinas.</p>
+  </section>
 
-    <section id="cursos">
-      <h2>Cursos</h2>
-      <p>Oferecemos uma variedade de cursos técnicos e acadêmicos para preparar nossos alunos para o futuro.</p>
-    </section>
+  <section id="cursos">
+    <h2>Cursos</h2>
+    <p>Oferecemos uma variedade de cursos técnicos e acadêmicos para preparar nossos alunos para o futuro.</p>
+  </section>
 
-    <section id="desafios">
-      <h2>Desafios</h2>
-      <p>Projetos e atividades que estimulam o pensamento crítico e a criatividade dos estudantes.</p>
-    </section>
+  <section id="desafios">
+    <h2>Desafios</h2>
+    <p>Projetos e atividades que estimulam o pensamento crítico e a criatividade dos estudantes.</p>
+  </section>
 
-    <section id="projetos">
-      <h2>Projetos Integradores</h2>
-      <p>Confira aqui todos os trabalhos dos alunos, desenvolvidos com dedicação e criatividade.</p>
+  <section id="painel">
+    <h2>Painel</h2>
+    <div class="dashboard" id="infoUsuario" style="display:flex; flex-wrap:wrap; gap:20px;"></div>
+  </section>
 
-      <div class="projeto-card">
-        <h3>Projeto de Feedback</h3>
-        <p>Plataforma para avaliação e sugestões, promovendo a melhoria contínua da escola.</p>
-        <a href="https://flyaway999.github.io/TCC-FEEDBACK/login-page/index.html" target="_blank" class="btn-projeto">
-          Acessar Projeto
-        </a>
-      </div>
-    </section>
+  <footer>
+    &copy; 2025 Escola Alfredo Cardoso
+  </footer>
+</div>
 
-    <footer>
-      &copy; 2025 Escola Alfredo Cardoso 
-    </footer>
-  </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const menuLinks = document.querySelectorAll('.sidebar nav a[data-section]');
+  const sections = document.querySelectorAll('section');
+  const logo = document.getElementById('logoEscola');
+  const infoUsuario = document.getElementById('infoUsuario');
 
-  <script>
-    // Exibir avisos salvos no localStorage
-    document.addEventListener('DOMContentLoaded', () => {
-      const aviso = localStorage.getItem('avisoGeral');
-      if (aviso) {
-        document.getElementById('textoAviso').textContent = aviso;
-      }
-      mostrarSecao('avisos'); // Mostra avisos por padrão
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const target = link.getAttribute('data-section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      if (target) document.getElementById(target).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  });
 
-    // Função para exibir apenas a seção escolhida
-    function mostrarSecao(id) {
-      // Esconde todas as seções
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+  logo.addEventListener('click', () => {
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById('painel').classList.add('active');
 
-      // Remove destaque dos botões
-      document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('active'));
+    const tipoUsuario = prompt("Digite seu perfil: aluno ou responsavel");
 
-      // Mostra a seção escolhida
-      document.getElementById(id).classList.add('active');
+    const cardsHTML = `
+      <div style="flex:1 1 150px; background:#fff; border:1px solid #ddd; border-radius:10px; padding:15px; text-align:center;">
+        <h2>4</h2>
+        <p>Pendências</p>
+      </div>
+      <div style="flex:1 1 150px; background:#fff; border:1px solid #ddd; border-radius:10px; padding:15px; text-align:center;">
+        <h2>0</h2>
+        <p>Mensagem não lida</p>
+      </div>
+      <div style="flex:1 1 150px; background:#fff; border:1px solid #ddd; border-radius:10px; padding:15px; text-align:center;">
+        <h2>${tipoUsuario === "aluno" ? 17 : 3}</h2>
+        <p>Faltas</p>
+      </div>
+      <div style="flex:1 1 150px; background:#fff; border:1px solid #ddd; border-radius:10px; padding:15px; text-align:center;">
+        <h2>Boletim</h2>
+        <p>Avaliações</p>
+      </div>
+      <div style="flex:1 1 150px; background:#fff; border:1px solid #ddd; border-radius:10px; padding:15px; text-align:center;">
+        <h2>🏆</h2>
+        <p>ver minhas Conquistas</p>
+      </div>
+      <div style="flex:2 1 300px; background:#fff; border:1px solid #ddd; border-radius:10px; padding:15px;">
+        <h3>Agenda</h3>
+        <ul>
+          <li>15/08 - Reunião do Grêmio Estudantil</li>
+          <li>29/08 - Reunião do Conselho de Escola</li>
+          <li>29/08 - Reunião da Apm - Diretoria Executiva</li>
+        </ul>
+      </div>
+    `;
 
-      // Destaca o botão clicado
-      document.getElementById('btn-' + id).classList.add('active');
-    }
-  </script>
+    infoUsuario.innerHTML = cardsHTML;
+  });
+});
+</script>
+
 </body>
 </html>
