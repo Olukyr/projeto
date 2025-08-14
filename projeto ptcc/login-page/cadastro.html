@@ -133,6 +133,7 @@
         <label for="tipo">Tipo de acesso</label>
         <select id="tipo" required>
           <option value="">Selecione</option>
+          <option value="aluno">Aluno</option>
           <option value="responsavel">Responsável</option>
           <option value="administrador">Administrador</option>
         </select>
@@ -160,18 +161,28 @@
   <script>
     const form = document.getElementById("cadastroForm");
     const feedback = document.getElementById("feedbackMsg");
+    const emailInput = document.getElementById("email");
+    const tipoSelect = document.getElementById("tipo");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const nome = document.getElementById("nome").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const tipo = document.getElementById("tipo").value;
+      const email = emailInput.value.trim();
+      const tipo = tipoSelect.value;
       const senha = document.getElementById("senha").value;
       const justificativa = document.getElementById("justificativa").value.trim();
 
+      // Validações básicas
       if (!nome || !email || !tipo || !senha || !justificativa) {
         feedback.textContent = "Por favor, preencha todos os campos.";
+        feedback.className = "feedback error";
+        return;
+      }
+
+      // Regra especial para ALUNO
+      if (tipo === "aluno" && !email.endsWith("@aluno.educacao.sp.gov.br")) {
+        feedback.textContent = "Para alunos, use um e-mail que termine com @aluno.educacao.sp.gov.br.";
         feedback.className = "feedback error";
         return;
       }
