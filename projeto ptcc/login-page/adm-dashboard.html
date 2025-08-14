@@ -159,7 +159,6 @@
   <header>
     <div class="header-inner">
       <div class="header-logo">
-        <!-- ajuste o caminho se necessário -->
         <img src="../home-page/escola.png" alt="Logo da Escola">
       </div>
       <div class="header-title">Painel Administrativo</div>
@@ -195,7 +194,25 @@
   </section>
 
   <script>
-    // Escapa HTML para evitar injeção quando renderiza dados vindos do localStorage
+    // ✅ BLOQUEIO DE ACESSO SEM LOGIN DE ADMINISTRADOR
+    document.addEventListener('DOMContentLoaded', () => {
+      const usuarioLogado = localStorage.getItem('usuarioLogado');
+      
+      if (!usuarioLogado) {
+        alert('Acesso restrito! É necessário fazer login como administrador.');
+        window.location.href = '../login-adm.html'; // ajuste conforme necessário
+        return;
+      }
+
+      const dadosUsuario = JSON.parse(usuarioLogado);
+      if (dadosUsuario.tipo !== 'administrador') {
+        alert('Você não tem permissão para acessar esta página.');
+        window.location.href = '../login-adm.html';
+        return;
+      }
+    });
+
+    // Função para escapar HTML (evitar XSS)
     function esc(str) {
       return String(str).replace(/[&<>"']/g, (m) => ({
         '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
